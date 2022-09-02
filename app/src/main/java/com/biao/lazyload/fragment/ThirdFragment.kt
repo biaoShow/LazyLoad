@@ -3,7 +3,7 @@ package com.biao.lazyload.fragment
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.biao.lazyload.MyApplication
+import com.biao.lazyload.AppContext
 import com.biao.lazyload.R
 
 class ThirdFragment : LazyFragment() {
@@ -21,7 +21,7 @@ class ThirdFragment : LazyFragment() {
     override fun onDataLoad() {
         Log.i(TAG, "加载数据-3")
         tvTipThird.text = "加载中..."
-        MyApplication.mainHandler.postDelayed(run, 2000)
+        AppContext.mainHandler.postDelayed(run, 2000)
     }
 
     private var run: Runnable = Runnable {
@@ -32,6 +32,6 @@ class ThirdFragment : LazyFragment() {
 
     override fun onDataLoadStop() {
         Log.i(TAG, "停止加载数据-3")
-        MyApplication.mainHandler.removeCallbacks(run)
+        AppContext.mainHandler.removeCallbacks(run)
     }
 }

@@ -8,12 +8,12 @@ import com.biao.lazyload.MainActivity2
 import com.biao.lazyload.AppContext
 import com.biao.lazyload.R
 
-class FourthFragment : LazyFragment() {
+class SportsFragment : LazyFragment() {
     private val TAG: String = "FourthFragment"
     private lateinit var tvTipFourth: TextView
 
     override fun initView(view: View) {
-        tvTipFourth = view.findViewById(R.id.tv_tip_fourth)
+        tvTipFourth = view.findViewById(R.id.tv_tip_sports)
         tvTipFourth.setOnClickListener {
             var intent = Intent(context, MainActivity2::class.java)
             startActivity(intent)
@@ -21,7 +21,7 @@ class FourthFragment : LazyFragment() {
     }
 
     override fun getLayoutRes(): Int {
-        return R.layout.fourth_fragment_layout
+        return R.layout.sports_fragment_layout
     }
 
     override fun onDataLoad() {

@@ -6,16 +6,16 @@ import android.widget.TextView
 import com.biao.lazyload.AppContext
 import com.biao.lazyload.R
 
-class SecondFragment : LazyFragment() {
+class EnterFragment : LazyFragment() {
     private val TAG: String = "SecondFragment"
     private lateinit var tvTipSecond: TextView
 
     override fun initView(view: View) {
-        tvTipSecond = view.findViewById(R.id.tv_tip_second)
+        tvTipSecond = view.findViewById(R.id.tv_tip_enter)
     }
 
     override fun getLayoutRes(): Int {
-        return R.layout.second_fragment_layout
+        return R.layout.enter_fragment_layout
     }
 
     override fun onDataLoad() {
