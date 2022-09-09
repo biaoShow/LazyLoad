@@ -1,20 +1,31 @@
 package com.biao.lazyload.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
+import com.biao.lazyload.R
+import com.biao.lazyload.databinding.LoadDialogLayoutBinding
 
-abstract class LazyFragment : Fragment() {
+abstract class LazyFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     private val LOG_TAG: String = "LazyFragment"
-    private var rootView: View? = null
+//    private var rootView: View? = null
 
     private var isViewCreate: Boolean = false //view是否已经创建
     private var isPageVisible: Boolean = false //页面是否可见
     private var isAgainLoad: Boolean = false //第二次进入是否重新加载
     private var isLoadSuccess: Boolean = false //数据是否已经加载成功
+
+    protected lateinit var binding: VB
+    protected lateinit var viewModel: VM
+
+    private var loadDialog: Dialog? = null
 
 
     //设置每次进入是否重新加载
@@ -41,22 +52,27 @@ abstract class LazyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i(LOG_TAG, "onViewCreated")
-        if (rootView == null) {
-            rootView = inflater.inflate(getLayoutRes(), container, false)
-        }
-        initView(rootView!!)
+        binding = initBinding(inflater, container)
+//        initView(rootView!!)
         isViewCreate = true
         if (userVisibleHint) { //如果可见则主动触发加载数据，解决第一次进入时候加载数据问题
             dispatchUserVisibleHint(true)
         }
-        return rootView
+        viewModel = ViewModelProvider(this).get(viewModelClass())
+        initData()
+        return binding.root
     }
 
-    //初始化控件
-    abstract fun initView(view: View)
+    //    //初始化控件
+//    abstract fun initView(view: View)
+    abstract fun initData()
 
     //设置布局文件
-    abstract fun getLayoutRes(): Int
+//    abstract fun getLayoutRes(): Int
+
+    abstract fun initBinding(inflater: LayoutInflater, container: ViewGroup?): VB
+
+    abstract fun viewModelClass():Class<VM>
 
     override fun onResume() {
         super.onResume()
@@ -101,5 +117,25 @@ abstract class LazyFragment : Fragment() {
     //停止加载数据
     open fun onDataLoadStop() {
 
+    }
+
+    protected fun showLoading() {
+        if (loadDialog == null) {
+            createDialog()
+        }
+        loadDialog!!.show()
+    }
+
+    protected fun hideLoading() {
+        if (loadDialog != null && loadDialog!!.isShowing) loadDialog!!.dismiss()
+    }
+
+    private fun createDialog() {
+        loadDialog = Dialog(requireContext(), R.style.Base_Theme_AppCompat_Dialog)
+        val binding = LoadDialogLayoutBinding.inflate(layoutInflater)
+        loadDialog!!.setContentView(binding.root)
+
+        val window = loadDialog!!.window
+        window!!.setLayout(200, 200)
     }
 }

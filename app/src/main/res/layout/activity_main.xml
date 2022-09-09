@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/title_bar_layout" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
@@ -12,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:background="@color/bar_bg"
         android:orientation="horizontal">
 
@@ -22,7 +26,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="第一页" />
+            android:text="新闻"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/bottom_bar_split_line" />
 
         <TextView
             android:id="@+id/tv_page2"
@@ -30,7 +41,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="第二页" />
+            android:text="视频"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/bottom_bar_split_line" />
 
         <TextView
             android:id="@+id/tv_page3"
@@ -38,7 +56,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="第三页" />
+            android:text="天气"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/bottom_bar_split_line" />
 
         <TextView
             android:id="@+id/tv_page4"
@@ -46,7 +71,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="第四页" />
+            android:text="我的"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

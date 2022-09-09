@@ -2,22 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_tip_top"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:gravity="center"-->
-    <!--        android:visibility="gone"-->
-    <!--        android:text="加载中..." />-->
+
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_news"
+        android:layout_margin="10dp"
+        android:id="@+id/rv_news_video_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
     <TextView
-        android:id="@+id/tv_tip_top"
+        android:id="@+id/tv_tip_second"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="加载中..." />

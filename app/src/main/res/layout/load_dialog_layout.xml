@@ -3,11 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_tip_fourth"
+    <ProgressBar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="加载中..." />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
